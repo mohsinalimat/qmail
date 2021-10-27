@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include qmail *.css
+recursive-include qmail *.csv
+recursive-include qmail *.html
+recursive-include qmail *.ico
+recursive-include qmail *.js
+recursive-include qmail *.json
+recursive-include qmail *.md
+recursive-include qmail *.png
+recursive-include qmail *.py
+recursive-include qmail *.svg
+recursive-include qmail *.txt
+recursive-exclude qmail *.pyc
