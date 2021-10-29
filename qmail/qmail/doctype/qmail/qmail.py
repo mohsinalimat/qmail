@@ -25,7 +25,7 @@ class QMail(Document):
 		data['content'] = self.html_message if self.html else self.message
 		files = self.attachments()
 
-		requests.post('https://staging.frappe.cloud/api/method/press.api.email.send_mail', data={'data': json.dumps(self.data)}, files=self.files)
+		requests.post('https://staging.frappe.cloud/api/method/press.api.email.send_mail', data={'data': json.dumps(data)}, files=files)
 
 	def attachments(self):
 		"""
