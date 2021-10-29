@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestQMailSetting(unittest.TestCase):
+class TestQMailSettings(unittest.TestCase):
 	pass

@@ -5,21 +5,20 @@ import frappe
 import requests
 from frappe.model.document import Document
 
-class QMailSetting(Document):
+class QMailSettings(Document):
 	def validate(self):
 		"""
 		Testing: if team and site is set create_subscription
 		"""
 		if self.team and self.site:
-			print('Sending..')
 			data = {
 				'team': self.team,
 				'site': self.site,
 				'passphrase': self.passphrase
 			}
 
-			response = requests.post('http://0.0.0.0:8003/api/method/press.api.email.create_subscription', data=data)
-			print(response.json())
+			response = requests.post('https://staging.frappe.cloud/api/method/press.api.email.create_subscription', data=data)
+
 			resp_data = response.json()['message']
 
 			frappe.db.set_value('QMail Settings', 'QMail Settings', {

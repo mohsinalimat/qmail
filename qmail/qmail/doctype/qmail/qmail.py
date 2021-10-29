@@ -15,7 +15,7 @@ class QMail(Document):
 		"""
 		data = {}
 
-		team = frappe.db.get_single_value('QMail Setting', 'team')
+		team = frappe.db.get_single_value('QMail Settings', 'team')
 		data['team'] = team
 		data['site'] = frappe.local.site
 		data['sender'] = self.sender
