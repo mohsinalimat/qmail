@@ -1,7 +1,6 @@
 # Copyright (c) 2021, Rutwik Hiwalkar and contributors
 # For license information, please see license.txt
 
-from requests.api import head
 import frappe
 from frappe.model.document import Document
 from frappe.desk.form.load import get_attachments
@@ -25,7 +24,10 @@ class QMail(Document):
 		data['content'] = self.html_message if self.html else self.message
 		files = self.attachments()
 
-		requests.post('https://staging.frappe.cloud/api/method/press.api.email.send_mail', data={'data': json.dumps(data)}, files=files)
+		resp = requests.post('https://staging.frappe.cloud/api/method/press.api.email.send_mail', data={'data': json.dumps(data)}, files=files)
+		
+		if json.loads(resp.text)['message'] == "Error":
+			frappe.throw('Plan not available or expired.')
 
 	def attachments(self):
 		"""
