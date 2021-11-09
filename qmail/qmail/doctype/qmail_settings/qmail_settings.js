@@ -3,16 +3,35 @@
 
 frappe.ui.form.on("QMail Settings", {
   refresh: function (frm) {
+    console.log(frm.doc.team);
     [
-      [__("Novice"), "build", true],
-      [__("Ameateur"), "deploy_to_staging", true],
-      [__("Pro"), "promote_to_production", true],
-    ].forEach(([label, method, show]) => {
+      [__("Mail5"), true],
+      [__("Free100"), true],
+      [__("Novice"), true],
+      [__("Amateur"), true],
+      [__("Pro"), true],
+    ].forEach(([label, show]) => {
       if (show)
         frm.add_custom_button(
           label,
           () => {
-            console.log(method);
+            frappe
+              .call({
+                method: "qmail.qmail.doctype.qmail_settings.qmail_settings.change_plan",
+                args: {
+                  team: frm.doc.team,
+                  site: frm.doc.site,
+                  plan: label
+                },
+              })
+              .then((r) => {
+                if (r.message) {
+                  frappe.msgprint("Plan changed successfully.");
+                  // update the plan fields
+                }
+
+                frm.refresh();
+              });
           },
           __("Change Plan")
         );
