@@ -37,7 +37,7 @@ class QMailSettings(Document):
 @frappe.whitelist()
 def change_plan(team, site, plan):
 	response = requests.post(
-		"http://0.0.0.0:8003/api/method/press.api.email.change_plan",
+		"https://staging.frappe.cloud/api/method/press.api.email.change_plan",
 		data={"team": team, "site": site, "plan": plan},
 	)
 	print(response.text)
