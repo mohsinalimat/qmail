@@ -42,12 +42,13 @@ class QMail(Document):
 		attachments = []
 
 		for file in files:
-			attachments.append((file["file_name"], self.read_file(file["file_name"])))
+			perm_level = 'private' if file['is_private'] == 1 else 'public'
+			attachments.append((file["file_name"], self.read_file(perm_level, file["file_name"])))
 
 		return attachments
 
-	def read_file(self, file_name):
-		file_path = frappe.get_site_path("public", "files", file_name)
+	def read_file(self, perm_level, file_name):
+		file_path = frappe.get_site_path(perm_level, "files", file_name)
 		with open(file_path, "rb") as f:
 			content = f.read()
 
