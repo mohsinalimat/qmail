@@ -11,7 +11,12 @@
   "sender",
   "to",
   "recipient",
+  "section_break_6",
+  "cc",
+  "column_break_6",
+  "bcc",
   "section_break_8",
+  "body",
   "subject",
   "html",
   "message",
@@ -81,12 +86,37 @@
    "ignore_xss_filter": 1,
    "in_list_view": 1,
    "label": "Sender"
+  },
+  {
+   "fieldname": "cc",
+   "fieldtype": "Table",
+   "label": "cc",
+   "options": "QMail Recipient"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bcc",
+   "fieldtype": "Table",
+   "label": "bcc",
+   "options": "QMail Recipient"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "Heading",
+   "label": "Body"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-10-29 22:47:40.154851",
+ "modified": "2021-11-15 10:47:19.088347",
  "modified_by": "Administrator",
  "module": "Qmail",
  "name": "QMail",

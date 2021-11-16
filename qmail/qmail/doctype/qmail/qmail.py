@@ -20,6 +20,8 @@ class QMail(Document):
 		data["site"] = frappe.local.site
 		data["sender"] = self.sender
 		data["recipient"] = [r.recipient for r in self.recipient]
+		data["cc"] = [c.recipient for c in self.cc]
+		data["bcc"] = [b.recipient for b in self.bcc]
 		data["subject"] = self.subject
 		data["html"] = self.html
 		data["content"] = self.html_message if self.html else self.message
