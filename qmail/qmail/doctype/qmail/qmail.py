@@ -55,3 +55,13 @@ class QMail(Document):
 			content = f.read()
 
 		return content
+
+
+@frappe.whitelist(allow_guest=True)
+def change_message_status(**data):
+	doc = frappe.get_doc("QMail", data["message_id"])
+	doc.status = data["status"]
+	doc.save()
+	frappe.db.commit()
+
+	return "Success"

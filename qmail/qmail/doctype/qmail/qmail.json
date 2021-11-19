@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "QMAIL.#####",
  "creation": "2021-10-27 23:16:56.755854",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -21,6 +22,7 @@
   "html",
   "message",
   "html_message",
+  "status",
   "amended_from"
  ],
  "fields": [
@@ -111,15 +113,25 @@
    "fieldname": "body",
    "fieldtype": "Heading",
    "label": "Body"
+  },
+  {
+   "default": "draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "draft\npending\ndelivered\nfailed"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2021-11-15 10:47:19.088347",
+ "modified": "2021-11-19 19:04:02.097602",
  "modified_by": "Administrator",
  "module": "Qmail",
  "name": "QMail",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
