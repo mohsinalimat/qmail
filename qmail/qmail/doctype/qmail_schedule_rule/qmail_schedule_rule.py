@@ -69,7 +69,7 @@ def check_target_doctype_and_send(rules):
 		)
 
 		if docs:
-			message = get_email_from_template(rule.message, docs[0])
+			message = Template(rule.message).render(docs[0])
 			recipient = frappe.get_value(rule.doc, docs[0]["name"], rule.recipient)
 
 			# create new qmail object
@@ -85,12 +85,6 @@ def check_target_doctype_and_send(rules):
 
 			send(qmail.name)
 			# attach pdf if 1
-
-
-def get_email_from_template(jinja, args):
-	message = Template(jinja).render(args)
-
-	return message
 
 
 @frappe.whitelist()
