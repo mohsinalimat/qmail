@@ -10,7 +10,7 @@ frappe.ui.form.on('QMail', {
 					method: 'qmail.qmail.doctype.qmail.qmail.send_mail',
 					args: {
 						docname: frm.doc.name
-					}
+					},
 					callback: () => {
 						frm.refresh()
 					}
