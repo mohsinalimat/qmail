@@ -22,7 +22,8 @@ def send(docname):
 	data = {}
 
 	team = frappe.db.get_single_value("QMail Settings", "team")
-	data["team"] = team
+	data["sk_qmail"] = frappe.get_site_config()["sk_qmail"]
+	data["message_id"] = self.name
 	data["site"] = frappe.local.site
 	data["sender"] = doc.sender
 	data["recipient"] = [r.recipient for r in doc.recipient]
@@ -46,6 +47,7 @@ def send(docname):
 	doc.save()
 	frappe.db.commit()
 
+
 def attachments(docname):
 	"""
 	prepare attachments
@@ -54,10 +56,11 @@ def attachments(docname):
 	attachments = []
 
 	for file in files:
-		perm_level = 'private' if file['is_private'] == 1 else 'public'
+		perm_level = "private" if file["is_private"] == 1 else "public"
 		attachments.append((file["file_name"], read_file(perm_level, file["file_name"])))
 
 	return attachments
+
 
 def read_file(perm_level, file_name):
 	file_path = frappe.get_site_path(perm_level, "files", file_name)
