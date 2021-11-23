@@ -1,0 +1,166 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "QMSR.#####",
+ "creation": "2021-11-17 10:14:01.866677",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "interval_section",
+  "repeat",
+  "interval",
+  "weekday",
+  "day_of_month",
+  "section_break_3",
+  "doc",
+  "docfield",
+  "operator",
+  "value",
+  "message_section",
+  "sender",
+  "recipient",
+  "subject",
+  "message",
+  "attach_pdf",
+  "section_break_16",
+  "template_help"
+ ],
+ "fields": [
+  {
+   "fieldname": "interval",
+   "fieldtype": "Select",
+   "label": "Interval",
+   "options": "Daily\nMonthly\nWeekly"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Condition"
+  },
+  {
+   "fieldname": "interval_section",
+   "fieldtype": "Section Break",
+   "label": "Interval"
+  },
+  {
+   "default": "0",
+   "fieldname": "repeat",
+   "fieldtype": "Check",
+   "label": "Repeat"
+  },
+  {
+   "depends_on": "eval: doc.interval == \"Monthly\"",
+   "description": "Send on #th day of month.",
+   "fieldname": "day_of_month",
+   "fieldtype": "Data",
+   "label": "Day of month"
+  },
+  {
+   "fieldname": "doc",
+   "fieldtype": "Link",
+   "label": "Doctype",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "docfield",
+   "fieldtype": "Select",
+   "label": "DocField"
+  },
+  {
+   "fieldname": "value",
+   "fieldtype": "Data",
+   "label": "Value"
+  },
+  {
+   "fieldname": "message_section",
+   "fieldtype": "Section Break",
+   "label": "Template"
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Data",
+   "label": "Subject"
+  },
+  {
+   "fieldname": "sender",
+   "fieldtype": "Data",
+   "ignore_xss_filter": 1,
+   "label": "Sender"
+  },
+  {
+   "default": "0",
+   "description": "Use Doctype's printview as attachment? (e.g. invoice pdf)",
+   "fieldname": "attach_pdf",
+   "fieldtype": "Check",
+   "label": "Attach pdf"
+  },
+  {
+   "description": "This field is fetched from docfield in doctype mentioned above",
+   "fieldname": "recipient",
+   "fieldtype": "Data",
+   "label": "Recipient"
+  },
+  {
+   "fieldname": "message",
+   "fieldtype": "Text Editor",
+   "label": "Message"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "template_help",
+   "fieldtype": "HTML",
+   "label": "Template help",
+   "options": "<h4>Template message example</h4>\n<br>\nHello { name },<br>\nPayment for Invoice { doc.name } was { status }.<br>\n<br>\nRegards,\nFrappe.io\n<br><br>\n<p><strong>name, status</strong> are fields in DocType</p>"
+  },
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "depends_on": "eval: doc.interval == \"Weekly\"",
+   "fieldname": "weekday",
+   "fieldtype": "Select",
+   "label": "Weekday",
+   "options": "Sunday\nMonday\nTuesday\nWednesday\nThursday\nFriday\nSaturday"
+  },
+  {
+   "fieldname": "operator",
+   "fieldtype": "Select",
+   "label": "Operator",
+   "options": "=\n!=\n>\n>=\n<\n<="
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-11-22 13:49:31.376714",
+ "modified_by": "Administrator",
+ "module": "Qmail",
+ "name": "QMail Schedule Rule",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

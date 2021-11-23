@@ -109,7 +109,9 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
+	"daily": ["qmail.qmail.doctype.qmail_schedule_rule.qmail_schedule_rule.check_intervals"],
+}
 # 	"all": [
 # 		"qmail.tasks.all"
 # 	],
