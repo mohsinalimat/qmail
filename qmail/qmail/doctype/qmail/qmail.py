@@ -13,7 +13,7 @@ class QMail(Document):
 
 
 @frappe.whitelist(allow_guest=True)
-def send(docname):
+def send(docname, file_attachments=None):
 	"""
 	send data
 	"""
@@ -23,7 +23,7 @@ def send(docname):
 
 	team = frappe.db.get_single_value("QMail Settings", "team")
 	data["sk_qmail"] = frappe.get_site_config()["sk_qmail"]
-	data["message_id"] = self.name
+	data["message_id"] = docname
 	data["site"] = frappe.local.site
 	data["sender"] = doc.sender
 	data["recipient"] = [r.recipient for r in doc.recipient]
@@ -32,7 +32,7 @@ def send(docname):
 	data["subject"] = doc.subject
 	data["html"] = doc.html
 	data["content"] = doc.html_message if doc.html else doc.message
-	files = attachments(docname)
+	files = file_attachments if file_attachments else attachments(docname)
 
 	resp = requests.post(
 		"https://staging.frappe.cloud/api/method/press.api.email.send_mail",
@@ -52,7 +52,7 @@ def attachments(docname):
 	"""
 	prepare attachments
 	"""
-	files = get_attachments("QMail", docname.name)
+	files = get_attachments("QMail", docname)
 	attachments = []
 
 	for file in files:

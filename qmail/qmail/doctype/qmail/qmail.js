@@ -3,11 +3,10 @@
 
 frappe.ui.form.on('QMail', {
 	refresh: function(frm) {
-		console.log(frm.doc)
 		if (frm.doc.status === 'draft' || frm.doc.status === 'failure') {
 			frm.add_custom_button(__('Send'), () => {
 				frappe.call({
-					method: 'qmail.qmail.doctype.qmail.qmail.send_mail',
+					method: 'qmail.qmail.doctype.qmail.qmail.send',
 					args: {
 						docname: frm.doc.name
 					},
@@ -17,5 +16,6 @@ frappe.ui.form.on('QMail', {
 				})
 			})
 		}
+		frm.refresh()
 	}
 });
