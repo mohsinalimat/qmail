@@ -16,6 +16,5 @@ frappe.ui.form.on('QMail', {
 				})
 			})
 		}
-		frm.refresh()
 	}
 });
