@@ -73,7 +73,7 @@ def read_file(perm_level, file_name):
 def change_message_status(**data):
 	doc = frappe.get_doc("QMail", data["message_id"])
 	doc.status = data["status"]
-	doc.save()
+	doc.save(ignore_permissions=True)
 	frappe.db.commit()
 
 	return "Success"
