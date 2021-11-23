@@ -21,7 +21,6 @@ def send(docname, file_attachments=None):
 
 	data = {}
 
-	team = frappe.db.get_single_value("QMail Settings", "team")
 	data["sk_qmail"] = frappe.get_site_config()["sk_qmail"]
 	data["message_id"] = docname
 	data["site"] = frappe.local.site
